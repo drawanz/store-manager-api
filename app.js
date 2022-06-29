@@ -1,6 +1,6 @@
 const express = require('express');
 
-const router = ('./routes');
+const router = require('./routes/index');
 
 const app = express();
 
