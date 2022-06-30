@@ -1,4 +1,4 @@
-const managerModel = require('../models/managerModel');
+const managerModel = require('../models/salesModels');
 
 const getAll = async () => {
   const response = await managerModel.getAll();

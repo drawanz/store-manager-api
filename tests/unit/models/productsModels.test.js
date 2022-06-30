@@ -2,7 +2,7 @@ const sinon = require("sinon");
 const { expect } = require("chai");
 
 const connection = require('../../../helpers/connection');
-const managerModel = require('../../../models/managerModel');
+const managerModel = require('../../../models/salesModels');
 
 describe('testa a camada de Model da aplicação', async () => {
   const payloadProduct = [

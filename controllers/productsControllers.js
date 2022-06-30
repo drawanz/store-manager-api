@@ -1,4 +1,4 @@
-const managerService = require('../services/managerService');
+const managerService = require('../services/productsServices');
 const httpStatus = require('../helpers/httpStatusCode');
 
 const getAll = async (_req, res) => {
