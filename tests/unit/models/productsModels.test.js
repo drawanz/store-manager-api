@@ -2,7 +2,7 @@ const sinon = require("sinon");
 const { expect } = require("chai");
 
 const connection = require('../../../helpers/connection');
-const managerModel = require('../../../models/salesModels');
+const managerModel = require('../../../models/productsModels');
 
 describe('testa a camada de Model da aplicação', async () => {
   const payloadProduct = [
@@ -11,6 +11,10 @@ describe('testa a camada de Model da aplicação', async () => {
       name: "Shampoo",
     },
   ];
+
+  const payloadAdd = {
+    name: "ProdutoX",
+  };
 
   const id = 1;
   const idInvalido = 'abc'
@@ -58,4 +62,25 @@ describe('testa a camada de Model da aplicação', async () => {
       expect(response).to.have.property("id");
     }); 
   });
+
+  describe("testa a função add", async () => {
+    before(async () => {
+      await sinon.stub(connection, "execute").resolves(payloadProduct);
+    });
+
+    after(async () => {
+      await connection.execute.restore();
+    }); 
+
+    it("verifica se a função retorna um objeto válido", async () => {
+      const response = await managerModel.add(payloadAdd);
+      expect(response).to.be.a("object");
+    });
+
+    it("verifica se o objeto possui propriedade name e id", async () => {
+      const response = await managerModel.add(id);
+      expect(response).to.have.property("name");
+      expect(response).to.have.property("id");
+    }); 
+  })
 })
