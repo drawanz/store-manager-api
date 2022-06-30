@@ -19,7 +19,7 @@ const getById = async (id) => {
 const add = async (product) => {
   const [response] = await managerModel.add(product);
 
-  if (!response) return [];
+  if (!product) return [];
 
   return response;
 };
