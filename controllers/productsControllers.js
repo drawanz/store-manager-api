@@ -35,19 +35,11 @@ const add = async (req, res) => {
   try {
     const { name } = req.body;
 
-    if (!name) {
-      return res
-        .status(httpStatus.BAD_REQUEST)
-        .json({ message: '"name" is required' });
-    }
-
-    if (name.length < 5) {
-      return res
-        .status(httpStatus.UNPROCESSABLE_ENTITY)
-        .json({ message: '"name" length must be at least 5 characters long' });
-    }
-
     const response = await managerService.add(name);
+
+    if (response.status) {
+      return res.status(response.status).json({ message: response.message });
+    }
     
     return res.status(httpStatus.CREATED).json(response);
   } catch (error) {
