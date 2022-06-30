@@ -12,7 +12,7 @@ const getById = async (id) => {
     'SELECT * FROM StoreManager.products WHERE id = ?',
     [id],
   );
-  return product[0];
+  return product;
 };
 
 module.exports = {

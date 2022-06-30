@@ -9,7 +9,7 @@ const getAll = async () => {
 };
 
 const getById = async (id) => {
-  const response = await managerModel.getById(id);
+  const [response] = await managerModel.getById(id);
 
   if (!response) return [];
 
