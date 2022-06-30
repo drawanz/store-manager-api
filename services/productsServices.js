@@ -16,7 +16,16 @@ const getById = async (id) => {
   return response;
 };
 
+const add = async (product) => {
+  const [response] = await managerModel.add(product);
+
+  if (!response) return [];
+
+  return response;
+};
+
 module.exports = {
   getAll,
   getById,
+  add,
 };
