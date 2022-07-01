@@ -33,12 +33,6 @@ describe('testa a camada de Model da aplicação', async () => {
       const response = await managerModel.getAll();
       expect(response).to.be.a('object');
     })    
-
-    it("verifica se o objeto possui propriedade name e id", async () => {
-      const response = await managerModel.getAll();
-      expect(response).to.have.property("name");
-      expect(response).to.have.property("id");
-    }); 
   })
 
   describe("testa a função getById", async () => {
