@@ -116,21 +116,5 @@ describe('Desenvolve testes para a camada de Services', async () => {
         expect(response).to.have.property("message");
       });
     });
-
-    // it("verifica o valor do message e status com um name.length < 5", async () => {
-    //   const response = await productsServices.add(nameLength);
-
-    //   // expect(response.status).to.have.be(422);
-    //   expect(response).to.be(
-    //     '"name" length must be at least 5 characters long'
-    //   );
-    // }); 
-
-    // it("verifica se o objeto possui propriedade status e message com um name undefined", async () => {
-    //   const response = await productsServices.add(undefined);
-
-    //   expect(response).to.have.property("status");
-    //   expect(response).to.have.property("message");
-    // }); 
   });
 });
