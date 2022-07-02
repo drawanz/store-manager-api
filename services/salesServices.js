@@ -1,13 +1,5 @@
-const salesModels = require('../models/salesModels');
 const httpStatus = require('../helpers/httpStatusCode');
 const productsModels = require('../models/productsModels');
-
-// if (!nameProduct) {
-//   return {
-//     status: httpStatus.BAD_REQUEST,
-//     message: '"name" is required',
-//   };
-// }
 
 const validateBodyReq = (sales) => {
   if (sales.some((sale) => 'productId' in sale === false)) {
@@ -41,17 +33,6 @@ const validadeProductId = async (sales) => {
   }
   return 'validação ok';
 };
-
-const salee = [
-  {
-    productId: 1,
-    quantity: 1,
-  },
-  {
-    productId: 2,
-    quantity: 5,
-  },
-];
 
 module.exports = {
   validateBodyReq,
