@@ -1,3 +1,7 @@
+/* eslint-disable max-lines-per-function */
+/* eslint-disable quotes */
+/* eslint-disable comma-dangle */
+/* eslint-disable max-len */
 const connection = require('../helpers/connection');
 
 const findProductId = async (id) => {
@@ -13,17 +17,14 @@ const registerSales = async (sales) => {
   const [saleId] = await connection.execute(
     'SELECT * FROM StoreManager.sales ORDER BY id DESC LIMIT 1',
   );
+  const { id } = saleId[0];
   sales.forEach(async ({ productId, quantity }) => {
     await connection.execute(
       'INSERT INTO StoreManager.sales_products (`sale_id`,`product_id`,`quantity`) VALUES (?,?,?)',
-      [saleId[0].id, productId, quantity],
+      [id, productId, quantity],
     );
   });
-  const [response] = await connection.execute(
-    'SELECT * FROM StoreManager.sales_products WHERE `sale_id` = ?',
-    [saleId[0].id],
-  );
-  return response;
+  return id;
 };
 
 module.exports = {

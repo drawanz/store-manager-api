@@ -37,7 +37,10 @@ const validadeProductId = async (sales) => {
 
 const registerSales = async (sales) => {
   const response = await salesModels.registerSales(sales);
-  return response;
+  return {
+    id: response,
+    itemsSold: sales,
+  };
 };
 
 module.exports = {
