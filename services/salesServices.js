@@ -1,5 +1,6 @@
 const httpStatus = require('../helpers/httpStatusCode');
 const productsModels = require('../models/productsModels');
+const salesModels = require('../models/salesModels');
 
 const validateBodyReq = (sales) => {
   if (sales.some((sale) => 'productId' in sale === false)) {
@@ -34,7 +35,13 @@ const validadeProductId = async (sales) => {
   return 'validação ok';
 };
 
+const registerSales = async (sales) => {
+  const response = await salesModels.registerSales();
+  return response;
+};
+
 module.exports = {
   validateBodyReq,
   validadeProductId,
+  registerSales,
 };
