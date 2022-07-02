@@ -66,7 +66,7 @@ describe('testa a camada controller', async () => {
   describe("verifica a função add com caso de sucesso", () => {
     const res = {};
     const req = {};
-    const payloadId = 'Papel';
+    const payloadId = 1;
     const payloadOk = [
       {
         id: 1,
