@@ -1,15 +1,12 @@
 const connection = require('../helpers/connection');
 
-const sale = [
-  {
-    productId: 1,
-    quantity: 1,
-  },
-  {
-    productId: 2,
-    quantity: 5,
-  },
-];
+const findProductId = async (id) => {
+  const [response] = await connection.execute(
+    'SELECT * FROM StoreManager.sales_products WHERE product_id = ? LIMIT 1',
+    [id],
+  );
+  return response;
+};
 
 const registerSales = async (sales) => {
   await connection.execute('INSERT INTO StoreManager.sales (`date`) VALUES (NOW())');
@@ -29,4 +26,7 @@ const registerSales = async (sales) => {
   return response;
 };
 
-registerSales(sale).then((r) => console.log(r));
+module.exports = {
+  findProductId,
+  registerSales,
+};
