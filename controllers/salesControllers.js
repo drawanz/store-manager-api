@@ -17,7 +17,7 @@ const registrySales = async (req, res) => {
         .json(validateReqBody.message);
     }
 
-    const response = await salesServices.registerSales();
+    const response = await salesServices.registerSales(req.body);
     return res.status(httpStatus.CREATED).json(response);
   } catch (error) {
     console.log(error);
