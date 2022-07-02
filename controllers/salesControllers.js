@@ -9,12 +9,12 @@ const registrySales = async (req, res) => {
     if (validateReqBody.message) {
       return res
         .status(validateReqBody.status)
-        .json(validateReqBody.message);
+        .json({ message: validateReqBody.message });
     }
     if (validateProductId.message) {
       return res
-        .status(validateReqBody.status)
-        .json(validateReqBody.message);
+        .status(validateProductId.status)
+        .json({ message: validateProductId.message });
     }
 
     const response = await salesServices.registerSales(req.body);
