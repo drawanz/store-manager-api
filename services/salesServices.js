@@ -43,8 +43,32 @@ const registerSales = async (sales) => {
   };
 };
 
+const findAllSales = async () => {
+  const response = await salesModels.findAllSales();
+  if (response.length === 0) {
+    return {
+      status: httpStatus.NOT_FOUND,
+      message: 'Sales not found',
+    };
+  }
+  return response;
+};
+
+const findSaleById = async (id) => {
+  const response = await salesModels.findSaleById(id);
+  if (response.length === 0) {
+    return {
+      status: httpStatus.NOT_FOUND,
+      message: 'Sale not found',
+    };
+  }
+  return response;
+};
+
 module.exports = {
   validateBodyReq,
   validadeProductId,
   registerSales,
+  findAllSales,
+  findSaleById,
 };
