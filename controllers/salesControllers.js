@@ -41,7 +41,7 @@ const findAllSales = async (req, res) => {
 const findSaleById = async (req, res) => {
   try {
     const { id } = req.params;
-    const response = salesServices.findSaleById(id);
+    const response = await salesServices.findSaleById(id);
 
     if (response.message) {
       return res
