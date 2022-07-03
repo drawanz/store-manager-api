@@ -26,7 +26,7 @@ const registrySales = async (req, res) => {
 
 const findAllSales = async (req, res) => {
   try {
-    const response = salesServices.findAllSales();
+    const response = await salesServices.findAllSales();
     if (response.message) {
       return res
         .status(response.status)
