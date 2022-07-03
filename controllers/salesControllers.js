@@ -24,6 +24,39 @@ const registrySales = async (req, res) => {
   }
 };
 
+const findAllSales = async (req, res) => {
+  try {
+    const response = salesServices.findAllSales();
+    if (response.message) {
+      return res
+        .status(response.status)
+        .json({ message: response.message });
+    }
+    return res.status(httpStatus.OK).json(response);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const findSaleById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const response = salesServices.findSaleById(id);
+
+    if (response.message) {
+      return res
+        .status(response.status)
+        .json({ message: response.message });
+    }
+
+    return res.status(httpStatus.OK).json(response);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   registrySales,
+  findAllSales,
+  findSaleById,
 };
