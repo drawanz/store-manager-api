@@ -7,19 +7,31 @@ const query3 = ' AS S INNER JOIN StoreManager.sales_products AS SP ON S.id = SP.
 const query4 = ' WHERE SP.sale_id = ?';
 const query5 = ' ORDER BY sale_id ASC , product_id ASC';
 
-const registerSales = async (sales) => {
+const addSale = async () => {
   await connection.execute('INSERT INTO StoreManager.sales (`date`) VALUES (NOW())');
-  const [saleId] = await connection.execute(
+};
+
+const getSaleId = async () => {
+  const [[{ id }]] = await connection.execute(
     'SELECT * FROM StoreManager.sales ORDER BY id DESC LIMIT 1',
   );
-  const { id } = saleId[0];
+  return id;
+};
+
+const registerSales = async (sales) => {
+  await addSale();
+  const id = await getSaleId();
   sales.forEach(async ({ productId, quantity }) => {
     await connection.execute(
       'INSERT INTO StoreManager.sales_products (`sale_id`,`product_id`,`quantity`) VALUES (?,?,?)',
       [id, productId, quantity],
     );
   });
-  return id;
+  const [[response]] = await connection.execute(
+    'SELECT * FROM StoreManager.sales_products WHERE sale_id = ?',
+    [id],
+  );
+  return response.sale_id;
 };
 
 const findSaleById = async (id) => {
@@ -36,6 +48,7 @@ const findAllSales = async () => {
 };
 
 module.exports = {
+  getSaleId,
   registerSales,
   findSaleById,
   findAllSales,
