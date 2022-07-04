@@ -36,7 +36,8 @@ const validadeProductId = async (sales) => {
 };
 
 const registerSales = async (sales) => {
-  const response = await salesModels.registerSales(sales);
+  const saleAddedId = await salesModels.addSale();
+  const response = await salesModels.registerSales(sales, saleAddedId);
   return {
     id: response,
     itemsSold: sales,
