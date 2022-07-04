@@ -4,7 +4,7 @@ const { expect } = require("chai");
 const connection = require('../../../helpers/connection');
 const managerModel = require('../../../models/productsModels');
 
-describe('testa a camada de Model da aplicação', async () => {
+describe('Desenvolve os testes para a camada de products da Models', async () => {
   const payloadProduct = [
     {
       id: 1,
@@ -17,7 +17,6 @@ describe('testa a camada de Model da aplicação', async () => {
   };
 
   const id = 1;
-  const idInvalido = 'abc'
 
   describe('testa a função getAll', async () => {
 

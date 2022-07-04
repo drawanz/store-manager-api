@@ -5,7 +5,7 @@ const productsServices = require("../../../services/productsServices");
 const productsModel = require("../../../models/productsModels");
 
 
-describe('Desenvolve testes para a camada de Services', async () => {
+describe('Desenvolve os testes para a camada de product da Services', async () => {
   const payloadProduct = [{
     id: 1,
     name: "Shampoo",
