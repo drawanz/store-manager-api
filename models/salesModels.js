@@ -8,30 +8,27 @@ const query4 = ' WHERE SP.sale_id = ?';
 const query5 = ' ORDER BY sale_id ASC , product_id ASC';
 
 const addSale = async () => {
-  await connection.execute('INSERT INTO StoreManager.sales (`date`) VALUES (NOW())');
+  const queryA = 'INSERT INTO StoreManager.sales (`date`) VALUES (NOW())';
+  const [sale] = await connection.execute(queryA);
+  return sale.insertId;
+  // ResultSetHeader {
+  //   fieldCount: 0,
+  //   affectedRows: 1,
+  //   insertId: 42,
+  //   info: '',
+  //   serverStatus: 2,
+  //   warningStatus: 0
+  // }
 };
 
-const getSaleId = async () => {
-  const [[{ id }]] = await connection.execute(
-    'SELECT * FROM StoreManager.sales ORDER BY id DESC LIMIT 1',
-  );
-  return id;
-};
-
-const registerSales = async (sales) => {
-  await addSale();
-  const id = await getSaleId();
-  sales.forEach(async ({ productId, quantity }) => {
+const registerSales = async (sales, id) => {
+  await Promise.all(sales.map(async ({ productId, quantity }) => {
     await connection.execute(
       'INSERT INTO StoreManager.sales_products (`sale_id`,`product_id`,`quantity`) VALUES (?,?,?)',
       [id, productId, quantity],
     );
-  });
-  const [[response]] = await connection.execute(
-    'SELECT * FROM StoreManager.sales_products WHERE sale_id = ?',
-    [id],
-  );
-  return response.sale_id;
+  }));
+  return id;
 };
 
 const findSaleById = async (id) => {
@@ -48,7 +45,7 @@ const findAllSales = async () => {
 };
 
 module.exports = {
-  getSaleId,
+  addSale,
   registerSales,
   findSaleById,
   findAllSales,
