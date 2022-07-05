@@ -4,7 +4,7 @@ const httpStatus = require('../helpers/httpStatusCode');
 const registrySales = async (req, res) => {
   try {
     const validateReqBody = await salesServices.validateBodyReq(req.body);
-    const validateProductId = await salesServices.validadeProductId(req.body);
+    const validateProductId = await salesServices.validateProductId(req.body);
 
     if (validateReqBody.message) {
       return res
