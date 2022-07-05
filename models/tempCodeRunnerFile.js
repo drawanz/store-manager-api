@@ -8,14 +8,35 @@ const query4 = ' WHERE SP.sale_id = ?';
 const query5 = ' ORDER BY sale_id ASC , product_id ASC';
 
 const addSale = async () => {
-  await connection.execute('INSERT INTO StoreManager.sales (`date`) VALUES (NOW())');
+  const queryA = 'INSERT INTO StoreManager.sales (`date`) VALUES (NOW())';
+  const [sale] = await connection.execute(queryA);
+  return sale.insertId;
+  // ResultSetHeader {
+  //   fieldCount: 0,
+  //   affectedRows: 1,
+  //   insertId: 42,
+  //   info: '',
+  //   serverStatus: 2,
+  //   warningStatus: 0
+  // }
 };
 
-const getSaleId = async () => {
-  const [[{ id }]] = await connection.execute(
-    'SELECT * FROM StoreManager.sales ORDER BY id DESC LIMIT 1',
-  );
+const registerSales = async (sales, id) => {
+  await Promise.all(sales.map(async ({ productId, quantity }) => {
+    await connection.execute(
+      'INSERT INTO StoreManager.sales_products (`sale_id`,`product_id`,`quantity`) VALUES (?,?,?)',
+      [id, productId, quantity],
+    );
+  }));
   return id;
 };
 
-getSaleId().then((r) => console.log(r));
+const findSaleById = async (id) => {
+  const [sales] = await connection.execute(
+    query1findById + query2 + query3 + query4 + query5,
+    [id],
+  );
+  return sales;
+};
+
+findSaleById(2).then((r) => console.log(r));
