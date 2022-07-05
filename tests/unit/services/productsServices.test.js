@@ -1,120 +1,98 @@
-const sinon = require("sinon");
-const { expect } = require("chai");
+const sinon = require('sinon');
+const { expect } = require('chai');
 
-const productsServices = require("../../../services/productsServices");
-const productsModel = require("../../../models/productsModels");
+const productsServices = require('../../../services/productsServices');
+const productsModel = require('../../../models/productsModels');
 
 
 describe('Desenvolve os testes para a camada de product da Services', async () => {
   const payloadProduct = [{
     id: 1,
-    name: "Shampoo",
+    name: 'Shampoo',
   }];
-
   const payloadErroObj = {
     status: 422,
     message: '"name" length must be at least 5 characters long',
   };
-
   const id = 1;
-
   const name = 'Papel';
   const nameInvalid = 'Pao'
-  const nameUndefined = undefined;
 
-  describe('testa a função getAll', async () => {
-    before(async () => {
-      await sinon.stub(productsModel, "getAll").resolves(payloadProduct);
+  describe('Verifica a função getAll', async () => {
+    before(() => {
+      sinon.stub(productsModel, 'getAll').resolves(payloadProduct);
     });
-
-    after(async () => {
-      await productsModel.getAll.restore();
+    after(() => {
+      productsModel.getAll.restore();
     });
-
-    it("testa se retorna um array", async () => {
+    it('Testa se retorna um array', async () => {
       const response = await productsServices.getAll();
-
-      expect(response).to.be.a("array");
+      expect(response).to.be.a('array');
     });
   })
 
-  describe("testa a função getById", async () => {
-    before(async () => {
-      await sinon.stub(productsModel, "getById").resolves(payloadProduct);
+  describe('Verifica a função getById', async () => {
+    before(() => {
+      sinon.stub(productsModel, 'getById').resolves(payloadProduct);
     });
-
-    after(async () => {
-      await productsModel.getById.restore();
+    after(() => {
+      productsModel.getById.restore();
     });
-
-    it("testa se retorna um object", async () => {
+    it('Testa se retorna um object', async () => {
+      const response = await productsServices.getById(id);
+      expect(response).to.be.a('object');
+    });
+    it('Testa se o objeto possui propriedade name e id', async () => {
       const response = await productsServices.getById(id);
 
-      expect(response).to.be.a("object");
-    });
-
-    it("verifica se o objeto possui propriedade name e id", async () => {
-      const response = await productsServices.getById(id);
-
-      expect(response).to.have.property("name");
-      expect(response).to.have.property("id");
+      expect(response).to.have.property('name');
+      expect(response).to.have.property('id');
     }); 
   });
 
-  describe("testa a função add", async () => {
-    before(async () => {
-      await sinon.stub(productsModel, "add").resolves(payloadProduct);
+  describe('Verifica a função add', async () => {
+    before(() => {
+      sinon.stub(productsModel, 'add').resolves(payloadProduct);
     });
-
-    after(async () => {
-      await productsModel.add.restore();
+    after(() => {
+      productsModel.add.restore();
     });
-
-    it("testa se retorna um object", async () => {
+    it('Testa se retorna um object', async () => {
       const response = await productsServices.add(name);
-
-      expect(response).to.be.a("object");
+      expect(response).to.be.a('object');
     });
-
-    it("verifica se o objeto possui propriedade name e id", async () => {
+    it('Testa se o objeto possui propriedade name e id', async () => {
       const response = await productsServices.add(name);
-
-      expect(response).to.have.property("name");
-      expect(response).to.have.property("id");
+      expect(response).to.have.property('name');
+      expect(response).to.have.property('id');
     }); 
 
-    describe("testa a função add com o name.length < 5", async () => {
-      before(async () => {
-        await sinon.stub(productsModel, "getAll").resolves(payloadErroObj);
-      });
-
-      after(async () => {
-        await productsModel.getAll.restore();
-      });
-
-      it("verifica se o objeto possui propriedade status e message com um name.length < 5", async () => {
-        const response = await productsServices.add(nameInvalid);
-
-        expect(response).to.have.property("status");
-        expect(response).to.have.property("message");
-      });
+  describe('Verifica a função add com o name.length < 5', async () => {
+    before(() => {
+      sinon.stub(productsModel, 'getAll').resolves(payloadErroObj);
     });
-
-    describe("testa a função add com o name recebendo undefined", async () => {
-      before(async () => {
-        await sinon.stub(productsModel, "getAll").resolves(payloadErroObj);
-      });
-
-      after(async () => {
-        await productsModel.getAll.restore();
-      });
-
-      it("verifica se o objeto possui propriedade status e message com um name undefined", async () => {
-        const response = await productsServices.add(nameInvalid);
-
-        expect(response).to.have.property("status");
-        expect(response).to.have.property("message");
-      });
+    after(() => {
+      productsModel.getAll.restore();
+    });
+    it('Testa se o objeto possui propriedade status e message com um name.length < 5', async () => {
+      const response = await productsServices.add(nameInvalid);
+      expect(response).to.have.property('status');
+      expect(response).to.have.property('message');
     });
   });
+
+  describe('Verifica a função add com o name recebendo undefined', async () => {
+    before(() => {
+      sinon.stub(productsModel, 'getAll').resolves(payloadErroObj);
+    });
+    after(() => {
+      productsModel.getAll.restore();
+    });
+    it('Testa se o objeto possui propriedade status e message com um name undefined', async () => {
+      const response = await productsServices.add(nameInvalid);
+      expect(response).to.have.property('status');
+      expect(response).to.have.property('message');
+    });
+  });
+});
 });
