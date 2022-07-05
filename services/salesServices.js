@@ -23,7 +23,7 @@ const validateBodyReq = (sales) => {
   return 'validação ok';
 };
 
-const validadeProductId = async (sales) => {
+const validateProductId = async (sales) => {
   const allProducts = await productsModels.getAll();
   const validId = allProducts.map((e) => e.id);
   if (sales.some(({ productId }) => !validId.includes(productId))) {
@@ -38,6 +38,7 @@ const validadeProductId = async (sales) => {
 const registerSales = async (sales) => {
   const saleAddedId = await salesModels.addSale();
   const response = await salesModels.registerSales(sales, saleAddedId);
+
   return {
     id: response,
     itemsSold: sales,
@@ -68,7 +69,7 @@ const findSaleById = async (id) => {
 
 module.exports = {
   validateBodyReq,
-  validadeProductId,
+  validateProductId,
   registerSales,
   findAllSales,
   findSaleById,

@@ -16,49 +16,49 @@ describe('Desenvolve os testes para a camada de products da Models', async () =>
       name: 'Shampoo',
     },
   ];
-  describe('testa a função getAll', async () => {
+  describe('Verifica a função getAll', async () => {
     before(async () => {
       await sinon.stub(connection, 'execute').resolves(payloadProduct);
     });
     after(async () => {
       await connection.execute.restore();
     });
-    it('verifica se a função retorna um objeto', async() => {
+    it('Testa se a função retorna um objeto', async() => {
       const response = await managerModel.getAll();
       expect(response).to.be.a('object');
     })    
   })
 
-  describe('testa a função getById', async () => {
+  describe('Verifica a função getById', async () => {
     before(async () => {
       await sinon.stub(connection, 'execute').resolves(payloadProduct);
     });
     after(async () => {
       await connection.execute.restore();
     });
-    it('verifica se a função retorna um objeto com id válido', async () => {
+    it('Testa se a função retorna um objeto com id válido', async () => {
       const response = await managerModel.getById(id);
       expect(response).to.be.a('object');
     });
-    it('verifica se o objeto possui propriedade name e id', async () => {
+    it('Testa se o objeto possui propriedade name e id', async () => {
       const response = await managerModel.getById(id);
       expect(response).to.have.property('name');
       expect(response).to.have.property('id');
     }); 
   });
 
-  describe('testa a função add', async () => {
+  describe('Verifica a função add', async () => {
     before(async () => {
       await sinon.stub(connection, 'execute').resolves(payloadProduct);
     });
     after(async () => {
       await connection.execute.restore();
     }); 
-    it('verifica se a função retorna um objeto válido', async () => {
+    it('Testa se a função retorna um objeto válido', async () => {
       const response = await managerModel.add(payloadAdd);
       expect(response).to.be.a('object');
     });
-    it('verifica se o objeto possui propriedade name e id', async () => {
+    it('Testa se o objeto possui propriedade name e id', async () => {
       const response = await managerModel.add(id);
       expect(response).to.have.property('name');
       expect(response).to.have.property('id');

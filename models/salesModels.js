@@ -11,14 +11,6 @@ const addSale = async () => {
   const queryA = 'INSERT INTO StoreManager.sales (`date`) VALUES (NOW())';
   const [sale] = await connection.execute(queryA);
   return sale.insertId;
-  // ResultSetHeader {
-  //   fieldCount: 0,
-  //   affectedRows: 1,
-  //   insertId: 42,
-  //   info: '',
-  //   serverStatus: 2,
-  //   warningStatus: 0
-  // }
 };
 
 const registerSales = async (sales, id) => {

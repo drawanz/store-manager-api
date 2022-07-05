@@ -155,7 +155,7 @@ describe('Desenvolve os testes para a camada de sales da Services', () => {
     });
   });
 
-  describe('Testa a função findSaleById', () => {
+  describe('Verifica a função findSaleById', () => {
     it('Testa a função findSaleById em caso de sucesso', async () => {
       const payloadId = 1;
       const payload = [
