@@ -1,9 +1,9 @@
-const managerService = require('../services/productsServices');
+const productsServices = require('../services/productsServices');
 const httpStatus = require('../helpers/httpStatusCode');
 
 const getAll = async (_req, res) => {
   try {
-    const response = await managerService.getAll();
+    const response = await productsServices.getAll();
 
     if (!response || response.length < 1) {
       return res.status(httpStatus.NOT_FOUND).json({ message: 'Product not found' });
@@ -18,7 +18,7 @@ const getAll = async (_req, res) => {
 const getById = async (req, res) => {
   try {
     const { id } = req.params;
-    const response = await managerService.getById(id);
+    const response = await productsServices.getById(id);
 
     if (!response || response.length === 0) {
       return res.status(httpStatus.NOT_FOUND).json({ message: 'Product not found' });
@@ -33,7 +33,7 @@ const getById = async (req, res) => {
 const add = async (req, res) => {
   try {
     const { name } = req.body;
-    const response = await managerService.add(name);
+    const response = await productsServices.add(name);
 
     if (response.status) {
       return res.status(response.status).json({ message: response.message });
@@ -45,8 +45,32 @@ const add = async (req, res) => {
   }
 }; 
 
+const att = async (req, res) => {
+  try {
+    const validateName = await productsServices.validateName(req.body);
+    const validateId = await productsServices.validateProductId(req.params);
+
+    if (validateName.message) {
+      return res
+        .status(validateName.status)
+        .json({ message: validateName.message });
+    }
+    if (validateId.message) {
+      return res
+        .status(validateId.status)
+        .json({ message: validateId.message });
+    }
+
+    const response = await productsServices.att(req.params, req.body);
+    return res.status(httpStatus.OK).json(response);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 module.exports = {
   getAll,
   getById,
   add,
+  att,
 };
