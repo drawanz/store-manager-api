@@ -35,6 +35,16 @@ const att = async (id, name) => {
   return response.affectedRows;
 };
 
+const deleteProduct = async (id) => {
+  const response = connection.execute(
+    'DELETE FROM StoreManager.products WHERE id = ?',
+    [id],
+  );
+  return response;
+};
+
+deleteProduct(3).then((r) => console.log(r));
+
 module.exports = {
   getAll,
   getById,
