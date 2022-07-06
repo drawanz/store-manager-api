@@ -51,6 +51,29 @@ const getSales = async () => {
   return response;
 };
 
+// const payload = [
+//   {
+//     productId: 1,
+//     quantity: 10,
+//   },
+//   {
+//     productId: 2,
+//     quantity: 50,
+//   },
+// ];
+
+const attSale = async (sale, id) => {
+  await Promise.all(sale.map(async ({ productId, quantity }) => {
+    await connection.execute(
+      'UPDATE StoreManager.sales_products SET `quantity` = ? WHERE sale_id = ? AND product_id = ?',
+      [quantity, id, productId],
+    );
+  }));
+  return id;
+};
+
+// attSale(payload, 1).then((r) => console.log(r));
+
 module.exports = {
   addSale,
   registerSales,
@@ -58,4 +81,5 @@ module.exports = {
   findAllSales,
   deleteSale,
   getSales,
+  attSale,
 };
