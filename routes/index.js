@@ -4,6 +4,7 @@ const salesController = require('../controllers/salesControllers');
 
 const router = express.Router();
 
+router.get('/products/search', productsControllers.searchProduct);
 router.get('/products', productsControllers.getAll);
 router.post('/products', productsControllers.add);
 router.get('/products/:id', productsControllers.getById);
