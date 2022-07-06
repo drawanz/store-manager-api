@@ -87,5 +87,81 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "46d74bb3-f804-477d-b2c2-5e2841414f51",
+    "colId": "history",
+    "containerId": "",
+    "name": "locahost:3000/products/:1",
+    "url": "locahost:3000/products/:1",
+    "method": "PUT",
+    "sortNum": 0,
+    "created": "2022-07-06T14:16:07.346Z",
+    "modified": "2022-07-06T14:16:07.371Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "  {\n    \"name\": \"Martelo do Batman\"\n  }",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "f51dfa39-5131-477d-8a8e-5a96f815d6aa",
+    "colId": "history",
+    "containerId": "",
+    "name": "locahost:3000/products/1",
+    "url": "locahost:3000/products/1",
+    "method": "PUT",
+    "sortNum": 0,
+    "created": "2022-07-06T14:16:23.524Z",
+    "modified": "2022-07-06T14:16:23.544Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "  {\n    \"name\": \"Martelo do Batman\"\n  }",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "de83fbab-7fc0-46b5-8aac-69a979ced3d4",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3000/products/1",
+    "url": "localhost:3000/products/1",
+    "method": "PUT",
+    "sortNum": 0,
+    "created": "2022-07-06T14:16:30.132Z",
+    "modified": "2022-07-06T14:29:30.917Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "  {\n    \"name\": \"Martelo do Batman\"\n  }",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "eb4be1a3-91a4-47cc-a21e-dd9f03af3aab",
+    "colId": "history",
+    "containerId": "",
+    "name": "localhost:3000/products/17",
+    "url": "localhost:3000/products/17",
+    "method": "PUT",
+    "sortNum": 0,
+    "created": "2022-07-06T14:25:23.928Z",
+    "modified": "2022-07-06T14:25:23.997Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "  {\n    \"name\": \"Martelo do Batman\"\n  }",
+      "form": []
+    },
+    "tests": []
   }
 ]
