@@ -55,8 +55,26 @@ const findSaleById = async (req, res) => {
   }
 };
 
+const deleteSale = async (req, res) => {
+  try {
+    const validateId = await salesServices.validateSaleId(req.params);
+
+    if (validateId.message) {
+      return res
+        .status(validateId.status)
+        .json({ message: validateId.message });
+    }
+
+    await salesServices.deleteProduct(req.params);
+    return res.status(httpStatus.NO_CONTENT).json();
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 module.exports = {
   registrySales,
   findAllSales,
   findSaleById,
+  deleteSale,
 };

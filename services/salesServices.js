@@ -75,11 +75,24 @@ const deleteSale = async ({ id }) => {
   return response;
 };
 
+const validateSaleId = async ({ id }) => {
+  const allSales = await salesModels.findAllSales();
+  const validIds = allSales.map((e) => e.id);
+  if (!validIds.includes(Number(id))) {
+    return {
+      status: httpStatus.NOT_FOUND,
+      message: 'Sale not found',
+    };
+  }
+  return 'validação ok';
+};
+
 module.exports = {
   validateBodyReq,
   validateProductId,
   registerSales,
   findAllSales,
   findSaleById,
+  validateSaleId,
   deleteSale,
 };

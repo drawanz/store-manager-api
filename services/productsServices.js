@@ -42,7 +42,6 @@ const add = async (nameProduct) => {
 const validateProductId = async ({ id }) => {
   const allProducts = await productsModels.getAll();
   const validIds = allProducts.map((e) => e.id);
-  console.log();
   if (!validIds.includes(Number(id))) {
     return {
       status: httpStatus.NOT_FOUND,
