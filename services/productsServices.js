@@ -70,7 +70,10 @@ const validateName = async ({ name }) => {
 };
 
 const att = async ({ id }, { name }) => {
-  await productsModels.att(id, name);
+  const response = await productsModels.att(id, name);
+
+  if (response === 0) return [];
+
   return {
     id,
     name,
