@@ -80,7 +80,7 @@ const att = async ({ id }, { name }) => {
   };
 };
 
-const deleteProduct = async (id) => {
+const deleteProduct = async ({ id }) => {
   const response = await productsModels.deleteProduct(id);
 
   if (!response) return [];

@@ -68,9 +68,27 @@ const att = async (req, res) => {
   }
 };
 
+const deleteProduct = async (req, res) => {
+  try {
+    const validateId = await productsServices.validateProductId(req.params);
+
+    if (validateId.message) {
+      return res
+        .status(validateId.status)
+        .json({ message: validateId.message });
+    }
+
+    await productsServices.delete(req.params);
+    return res.status(httpStatus.NO_CONTENT).json();
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 module.exports = {
   getAll,
   getById,
   add,
   att,
+  deleteProduct,
 };
