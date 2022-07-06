@@ -37,12 +37,21 @@ const findAllSales = async () => {
 };
 
 const deleteSale = async (id) => {
-  const response = connection.execute(
+  const response = await connection.execute(
     'DELETE FROM StoreManager.sales WHERE id = ?',
     [id],
   );
   return response;
 };
+
+const getSales = async () => {
+  const [response] = await connection.execute(
+    'SELECT * FROM StoreManager.sales',
+  );
+  return response;
+};
+
+getSales().then((r) => console.log(r));
 
 module.exports = {
   addSale,

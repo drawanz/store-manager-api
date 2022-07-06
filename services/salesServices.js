@@ -77,7 +77,9 @@ const deleteSale = async ({ id }) => {
 
 const validateSaleId = async ({ id }) => {
   const allSales = await salesModels.findAllSales();
+  console.log(allSales);
   const validIds = allSales.map((e) => e.id);
+  console.log(validIds);
   if (!validIds.includes(Number(id))) {
     return {
       status: httpStatus.NOT_FOUND,
