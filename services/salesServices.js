@@ -87,6 +87,24 @@ const validateSaleId = async ({ id }) => {
   return 'validação ok';
 };
 
+const attSale = async (sale, { id }) => {
+  const validateBody = await validateBodyReq(sale);
+  const validateProdId = await validateProductId(sale);
+  const validateSalesId = await validateSaleId({ id });
+
+  if (validateBody.message) return validateBody;
+  if (validateProdId.message) return validateProdId;
+  if (validateSalesId.message) return validateSalesId;
+
+  const response = await salesModels.attSale(sale, id);
+  console.log(response);
+  const message = {
+    saleId: response,
+    itemsUpdated: sale,
+  };
+  return message;
+};
+
 module.exports = {
   validateBodyReq,
   validateProductId,
@@ -95,4 +113,5 @@ module.exports = {
   findSaleById,
   validateSaleId,
   deleteSale,
+  attSale,
 };
