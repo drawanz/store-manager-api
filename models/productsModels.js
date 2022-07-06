@@ -43,14 +43,6 @@ const deleteProduct = async (id) => {
   return response;
 };
 
-const deleteSale = async (id) => {
-  const response = connection.execute(
-    'DELETE FROM StoreManager.sales WHERE id = ?',
-    [id],
-  );
-  return response;
-};
-
 module.exports = {
   getAll,
   getById,

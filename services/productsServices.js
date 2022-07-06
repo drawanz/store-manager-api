@@ -96,6 +96,7 @@ const deleteSale = async ({ id }) => {
   return response;
 };
 
+
 module.exports = {
   getAll,
   getById,
