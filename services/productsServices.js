@@ -88,17 +88,16 @@ const deleteProduct = async ({ id }) => {
 };
 
 const searchProduct = async (name) => {
-  const response = await productsModels.getAll();
+  const response = await productsModels.searchProduct(name);
+  console.log(response);
 
-  if (name === '') {
-    return response;
-  }
+  if (!response) return [];
 
-  const product = response.filter((e) => e.name.includes(name));
-  return product;
+  return {
+    status: httpStatus.OK,
+    response,
+  };
 };
-
-searchProduct('Martelo').then((r) => console.log(r));
 
 module.exports = {
   getAll,
@@ -108,4 +107,5 @@ module.exports = {
   validateProductId,
   validateName,
   deleteProduct,
+  searchProduct,
 };
