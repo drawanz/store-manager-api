@@ -59,4 +59,5 @@ module.exports = {
   findSaleById,
   findAllSales,
   deleteSale,
+  getSales,
 };
