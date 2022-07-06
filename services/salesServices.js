@@ -68,7 +68,7 @@ const findSaleById = async (id) => {
 };
 
 const deleteSale = async ({ id }) => {
-  const response = await productsModels.deleteSale(id);
+  const response = await salesModels.deleteSale(id);
 
   if (!response) return [];
 

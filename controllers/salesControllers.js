@@ -65,7 +65,7 @@ const deleteSale = async (req, res) => {
         .json({ message: validateId.message });
     }
 
-    await salesServices.deleteProduct(req.params);
+    await salesServices.deleteSale(req.params);
     return res.status(httpStatus.NO_CONTENT).json();
   } catch (error) {
     console.error(error);

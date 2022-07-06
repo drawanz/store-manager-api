@@ -51,8 +51,6 @@ const getSales = async () => {
   return response;
 };
 
-getSales().then((r) => console.log(r));
-
 module.exports = {
   addSale,
   registerSales,
