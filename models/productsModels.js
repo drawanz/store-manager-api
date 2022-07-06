@@ -43,11 +43,10 @@ const deleteProduct = async (id) => {
   return response;
 };
 
-deleteProduct(3).then((r) => console.log(r));
-
 module.exports = {
   getAll,
   getById,
   add,
   att,
+  deleteProduct,
 };
