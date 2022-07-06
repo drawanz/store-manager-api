@@ -78,7 +78,7 @@ const deleteProduct = async (req, res) => {
         .json({ message: validateId.message });
     }
 
-    await productsServices.delete(req.params);
+    await productsServices.deleteProduct(req.params);
     return res.status(httpStatus.NO_CONTENT).json();
   } catch (error) {
     console.error(error);
