@@ -80,6 +80,14 @@ const att = async ({ id }, { name }) => {
   };
 };
 
+const deleteProduct = async (id) => {
+  const response = await productsModels.deleteProduct(id);
+
+  if (!response) return [];
+
+  return response;
+};
+
 module.exports = {
   getAll,
   getById,
@@ -87,4 +95,5 @@ module.exports = {
   att,
   validateProductId,
   validateName,
+  deleteProduct,
 };
