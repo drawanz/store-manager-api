@@ -49,5 +49,4 @@ module.exports = {
   add,
   att,
   deleteProduct,
-  deleteSale,
 };

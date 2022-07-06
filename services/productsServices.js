@@ -88,15 +88,6 @@ const deleteProduct = async ({ id }) => {
   return response;
 };
 
-const deleteSale = async ({ id }) => {
-  const response = await productsModels.deleteSale(id);
-
-  if (!response) return [];
-
-  return response;
-};
-
-
 module.exports = {
   getAll,
   getById,
@@ -105,5 +96,4 @@ module.exports = {
   validateProductId,
   validateName,
   deleteProduct,
-  deleteSale,
 };
