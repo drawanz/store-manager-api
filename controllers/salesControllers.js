@@ -72,9 +72,22 @@ const deleteSale = async (req, res) => {
   }
 };
 
+const attSale = async (req, res) => {
+  try {
+    const response = await salesServices.attSale(req.body, req.params);
+    if (response.status) {
+      return res.status(response.status).json({ message: response.message });
+    }
+    return res.status(httpStatus.OK).json(response);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   registrySales,
   findAllSales,
   findSaleById,
   deleteSale,
+  attSale,
 };
