@@ -6,7 +6,8 @@ const salesControllers = require('../../../controllers/salesControllers');
 describe('Desenvolve os testes para a camada de sales da Controllers', () => {
   const res = {};
   const req = {};
-  describe.only('Verifica a função registrySales', () => {
+
+  describe('Verifica a função registrySales', () => {
 
     it("Testa a registrySales com caso de fala no corpo da requisição", async () => {
       const payload = {
@@ -86,5 +87,46 @@ describe('Desenvolve os testes para a camada de sales da Controllers', () => {
     });
   });
 
-  
+  describe.only('Verifica a função findAllSales', () => {
+    
+    it("Testa a função findAllSales em caso de falha", async () => {
+      const payload = {
+        status: 404,
+        message: "Sales not found",
+      };
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns(payload);
+      sinon.stub(salesServices, "findAllSales").returns(payload);
+
+      const response = await salesServices.findAllSales();
+      await salesControllers.findAllSales(req, res);
+      expect(
+        res.json.calledWith({ message: response.message })
+      ).to.be.equal(true);
+      expect(res.status.calledWith(404)).to.be.equal(true);
+
+      salesServices.findAllSales.restore();
+    });
+
+    it("Testa a função findAllSales em caso de sucesso", async () => {
+      const payloadSales = [
+        {
+          saleId: 1,
+          date: '2022-07-06T11:51:37.000Z',
+          productId: 1,
+          quantity: 5
+        },
+      ];
+      // res.status = sinon.stub().returns(res);
+      // res.json = sinon.stub().returns(res);
+      sinon.stub(salesServices, "findAllSales").returns(payloadSales);
+
+      const response = await salesServices.findAllSales();
+      await salesControllers.findAllSales(req, res);
+      expect(res.json.calledWith(response)).to.be.equal(true);
+      expect(res.status.calledWith(200)).to.be.equal(true);
+
+      salesServices.findAllSales.restore();
+    });
+  });
 });
