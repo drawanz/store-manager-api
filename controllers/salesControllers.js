@@ -24,7 +24,7 @@ const registrySales = async (req, res) => {
   }
 };
 
-const findAllSales = async (req, res) => {
+const findAllSales = async (_req, res) => {
   try {
     const response = await salesServices.findAllSales();
     if (response.message) {

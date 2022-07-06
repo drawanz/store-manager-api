@@ -8,7 +8,7 @@ const getAll = async (_req, res) => {
     if (!response || response.length < 1) {
       return res.status(httpStatus.NOT_FOUND).json({ message: 'Product not found' });
     }
-
+    
     return res.status(httpStatus.OK).json(response);
   } catch (error) {
     console.error(error);
@@ -18,7 +18,6 @@ const getAll = async (_req, res) => {
 const getById = async (req, res) => {
   try {
     const { id } = req.params;
-
     const response = await managerService.getById(id);
 
     if (!response || response.length === 0) {
@@ -34,13 +33,12 @@ const getById = async (req, res) => {
 const add = async (req, res) => {
   try {
     const { name } = req.body;
-
     const response = await managerService.add(name);
 
     if (response.status) {
       return res.status(response.status).json({ message: response.message });
-    }
-    
+    }    
+
     return res.status(httpStatus.CREATED).json(response);
   } catch (error) {
     console.error(error);
