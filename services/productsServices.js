@@ -87,6 +87,19 @@ const deleteProduct = async ({ id }) => {
   return response;
 };
 
+const searchProduct = async (name) => {
+  const response = await productsModels.getAll();
+
+  if (name === '') {
+    return response;
+  }
+
+  const product = response.filter((e) => e.name.includes(name));
+  return product;
+};
+
+searchProduct('Martelo').then((r) => console.log(r));
+
 module.exports = {
   getAll,
   getById,
