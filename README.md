@@ -18,3 +18,7 @@
   - Npm start;
   - Inicie o container Docker;
   - Faça as requisições à api de acordo com a documentação;
+
+# Documentação
+
+  - Documentação disponibilizada na rota "/doc" da api;
