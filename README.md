@@ -4,6 +4,7 @@
 
 # Habilidades desenvolvidas
 
+  - Conceitos Rest e Restful
   - Docker compose/docker file;
   - Utilização da metodologia MSC;
   - Node.js;
