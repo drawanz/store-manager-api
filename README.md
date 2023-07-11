@@ -16,8 +16,9 @@
 # Para rodar o projeto
 
   - Git clone nesse repositório;
-  - Npm start;
   - Inicie o container Docker;
+  - Npm start;
+  - Rode a migration.sql e a seed.sql para popular o db;
   - Faça as requisições à api de acordo com a documentação;
 
 # Documentação
