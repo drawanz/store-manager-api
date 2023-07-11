@@ -9,7 +9,7 @@
   - Utilização da metodologia MSC;
   - Node.js;
   - Express;
-  - MySql e suas queries;
+  - Sql e suas queries;
   - Desenvolvimento de testes unitários para cada camada da api;
   - Documentação com o Swagger
 
